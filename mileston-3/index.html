@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Resume</title>
+    <style>
+        body {
+            background-color: rgb(143, 204, 206);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #000000; 
+        }
+        h1, h2, h3 {
+            color: #000000;
+            font-family:Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #444; 
+        }
+        th {
+            text-align: left;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: #000000;
+            background-color: #ffe874; 
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: rgb(156, 130, 0); 
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #171a3a; 
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgb(19, 12, 59);
+            border-radius: 4px;
+            font-size: 16px;
+            color: rgb(25, 29, 44); 
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        #resume {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid rgb(16, 16, 73);
+            border-radius: 4px;
+            background-color: lightblue;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+        }
+        .hidden {
+            display: none;
+        }
+        .links-container a {
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .links-container a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            button {
+                width: 100%;
+                font-size: 14px;
+            }
+            .form-group input, .form-group textarea {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 800px; margin: auto; padding: 20px;">
+        <h1>Milestone 03 , 04 & 05</h1>
+        <h1><b>Personal Information</b></h1>
+        <form id="resume-form">
+            <div class="form-group">
+                <label for="photo">Photo:</label>
+                <input type="file" id="photo">
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number">
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" rows="3" placeholder="Enter your address"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="institution">Institution:</label>
+                <input type="text" id="institution" placeholder="Enter your institution">
+            </div>
+            <div class="form-group">
+                <label for="degree">Degree:</label>
+                <input type="text" id="degree" placeholder="Enter your degree">
+            </div>
+            <div class="form-group">
+                <label for="graduation-date">Graduation Date:</label>
+                <input type="date" id="graduation-date">
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills (comma-separated):</label>
+                <input type="text" id="skills" placeholder="Enter your skills">
+            </div>
+            <div class="form-group">
+                <label for="company">Company:</label>
+                <input type="text" id="company" placeholder="Enter your company">
+            </div>
+
+                <div class="form-group">
+                    <label for="position">Position:</label>
+                    <input type="text" id="position" placeholder="Enter your position">
+                </div>
+                <div class="form-group">
+                    <label for="start-date">Start Date:</label>
+                    <input type="date" id="start-date">
+                </div>
+                <div class="form-group">
+                    <label for="end-date">End Date:</label>
+                    <input type="date" id="end-date">
+                </div>
+                <div class="form-group">
+                    <label for="responsibilities">Responsibilities:</label>
+                    <textarea id="responsibilities" rows="3" placeholder="Describe your responsibilities"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="linkedInInput">LinkedIn:</label>
+                    <input type="url" id="linkedInInput" placeholder="Enter your LinkedIn URL">
+                </div>
+                <div class="form-group">
+                    <label for="githubInput">GitHub:</label>
+                    <input type="url" id="githubInput" placeholder="Enter your GitHub URL">
+                </div>
+                <button type="button" id="generateResume">Generate Resume</button>
+                <button type="button" id="downloadResume" class="hidden">Download Resume</button>
+                <button type="button" id="copyResume" class="hidden">Copy URL</button>
+            </form>
+    
+            <div id="resume" class="hidden">
+                <h2 id="displayMainHeading">Milestone 03 to 05</h2>
+                <h3 id="displayHeading">Dynamic Resume</h3>
+                <div id="displayPhoto"></div>
+                <p id="displayName"></p>
+                <p id="displayEmail"></p>
+                <p id="displayPhone"></p>
+                <p id="displayAddress"></p>
+                <p id="displayInstitution"></p>
+                <p id="displayDegree"></p>
+                <p id="displayGraduation"></p>
+                <p id="displaySkills"></p>
+                <p id="displayCompany"></p>
+                <p id="displayPosition"></p>
+                <p id="displayStartDate"></p>
+                <p id="displayEndDate"></p>
+                <p id="displayResponsibilities"></p>
+                <div id="displayLinks"></div>
+            </div>
+            </div>
+            <script>
+                // Resume generator functionality
+                const photoInput = document.getElementById('photo');
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const phoneInput = document.getElementById('phone');
+                const addressInput = document.getElementById('address');
+                const institutionInput = document.getElementById('institution');
+                const degreeInput = document.getElementById('degree');
+                const graduationDateInput = document.getElementById('graduation-date');
+                const skillsInput = document.getElementById('skills');
+                const companyInput = document.getElementById('company');
+                const positionInput = document.getElementById('position');
+                const startDateInput = document.getElementById('start-date');
+                const endDateInput = document.getElementById('end-date');
+                const responsibilitiesInput = document.getElementById('responsibilities');
+                const linkedInInput = document.getElementById('linkedInInput');
+                const githubInput = document.getElementById('githubInput');
+                const generateResumeButton = document.getElementById('generateResume');
+                const downloadResumeButton = document.getElementById('downloadResume');
+                const copyResumeButton = document.getElementById('copyResume');
+                const resumeDiv = document.getElementById('resume');
+                const displayPhoto = document.getElementById('displayPhoto');
+                const displayName = document.getElementById('displayName');
+                const displayEmail = document.getElementById('displayEmail');
+                const displayPhone = document.getElementById('displayPhone');
+                const displayAddress = document.getElementById('displayAddress');
+                const displayInstitution = document.getElementById('displayInstitution');
+                const displayDegree = document.getElementById('displayDegree');
+                const displayGraduation = document.getElementById('displayGraduation');
+                const displaySkills = document.getElementById('displaySkills');
+                const displayCompany = document.getElementById('displayCompany');
+                const displayPosition = document.getElementById('displayPosition');
+                const displayStartDate = document.getElementById('displayStartDate');
+                const displayEndDate = document.getElementById('displayEndDate');
+                const displayResponsibilities = document.getElementById('displayResponsibilities');
+                const displayLinks = document.getElementById('displayLinks');
+        
+                const generateResume = () => {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        displayPhoto.innerHTML = `<img src="${reader.result}" alt="Photo" style="width: 100px; height: auto;">`;
+                    };
+                    if (photoInput.files[0]) {
+                        reader.readAsDataURL(photoInput.files[0]);
+                    }
+        
+                    displayName.textContent = `Name: ${nameInput.value}`;
+                    displayEmail.textContent = `Email: ${emailInput.value}`;
+                    displayPhone.textContent = `Phone: ${phoneInput.value}`;
+                    displayAddress.textContent = `Address: ${addressInput.value}`;
+                    displayInstitution.textContent = `Institution: ${institutionInput.value}`;
+                    displayDegree.textContent = `Degree: ${degreeInput.value}`;
+                    displayGraduation.textContent = `Graduation Date: ${graduationDateInput.value}`;
+                    displaySkills.textContent = `Skills: ${skillsInput.value}`;
+                    displayCompany.textContent = `Company: ${companyInput.value}`;
+                    displayPosition.textContent = `Position: ${positionInput.value}`;
+                    displayStartDate.textContent = `Start Date: ${startDateInput.value}`;
+                    displayEndDate.textContent = `End Date: ${endDateInput.value}`;
+                    displayResponsibilities.textContent = `Responsibilities: ${responsibilitiesInput.value}`;
+        
+                    const linkedIn = linkedInInput.value ? `<a href="${linkedInInput.value}" target="_blank">LinkedIn</a>` : '';
+                    const github = githubInput.value ? `<a href="${githubInput.value}" target="_blank">GitHub</a>` : '';
+                    displayLinks.innerHTML = linkedIn || github ? `Links: ${linkedIn} ${github}` : 'No Links Provided';
+        
+                    resumeDiv.classList.remove('hidden');
+                    downloadResumeButton.classList.remove('hidden');
+                    copyResumeButton.classList.remove('hidden');
+                };
+        
+                if (generateResumeButton) {
+                    generateResumeButton.addEventListener('click', generateResume);
+                }
+        
+                // Download resume functionality
+                const downloadResume = () => {
+                    const blob = new Blob([document.getElementById('resume').innerText], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'resume.txt';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                };
+        
+                if (downloadResumeButton) {
+                    downloadResumeButton.addEventListener('click', downloadResume);
+                }
+        
+                // Copy resume URL functionality
+                const copyResumeURL = () => {
+                    const url = window.location.href;
+                    navigator.clipboard.writeText(url)
+                        .then(() => alert('Resume URL copied to clipboard'))
+                        .catch(err => alert('Failed to copy URL: ' + err));
+                };
+        
+                if (copyResumeButton) {
+                    copyResumeButton.addEventListener('click', copyResumeURL);
+                }
+            </script>
+        </body>
+        </html>
+        
+
+
+    
